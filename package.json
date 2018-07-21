@@ -1,0 +1,26 @@
+{
+  "main": "node_modules/expo/AppEntry.js",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "expo": "^28.0.0",
+    "jwt-decode": "^2.2.0",
+    "lottie-react-native": "^2.3.2",
+    "react": "16.3.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-28.0.0.tar.gz",
+    "react-native-camera": "^0.12.0",
+    "react-native-dismiss-keyboard": "^1.0.0",
+    "react-native-elements": "^0.18.5",
+    "react-native-google-static-map": "^0.1.12",
+    "react-native-image-progress": "^1.0.1",
+    "react-native-ios-status-bar-padding": "^1.1.0",
+    "react-native-progress": "^3.4.0",
+    "react-native-viewport-units": "0.0.5",
+    "react-navigation": "^1.0.0-beta.21",
+    "react-redux": "^5.0.6",
+    "react-router-redux": "^4.0.8",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "validator": "^9.2.0"
+  }
+}
