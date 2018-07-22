@@ -77,7 +77,7 @@ class ExploreItem extends Component {
 }
 const styles = StyleSheet.create({
   map:{
-    backgroundColor:'#ff9900'
+    backgroundColor:'#fff'
   },
   container:{
     backgroundColor:'#fff',

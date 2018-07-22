@@ -9,6 +9,7 @@ import dismissKeyboard from 'react-native-dismiss-keyboard';
 import { Font, AppLoading, Asset, DangerZone } from 'expo';
 
 import Animate from './animation';
+import CapLoader from './cap_loader';
 
 
 
@@ -22,6 +23,7 @@ constructor(props){
     isLoading:true,
     fontLoaded: false,
     progress: new Animated.Value(0),
+    loading:false
   }
 }
 
@@ -74,14 +76,20 @@ onSubmit(e){
   dismissKeyboard();
 this.props.userLogin(this.state).then(
       (res) => {
-        this.setState({errors: {form:res.message}, isLoading: false});
+        // this.setState({errors: {form:res.message}, isLoading: true});
         
         if(res.error_code != undefined){
           
           this.setState({errors: {form:res.message}, isLoading: false});
         }else{
-          this.props.navigation.navigate('MainStack');
-        this.setState({isLoading:false})
+          this.setState({loading:true})
+          var that = this;
+          setTimeout(function(){
+            that.setState({loading:false})
+            that.props.navigation.navigate('MainStack');
+          },2000)
+          
+        
         }
         
       }
@@ -126,9 +134,12 @@ this.props.userLogin(this.state).then(
       style={styles.container}
       behavior="padding"
     >
-    <View pointerEvents={this.state.isLoading ? "auto" : "none" } style={this.state.isLoading ? [styles.loadingBox,styles.visable] : styles.loadingBox }>
-      <Image style={styles.loadingGif} source={require('../img/loading.gif')}></Image>
-    </View>
+    {this.state.loading ? 
+      <View style={{position:'absolute',top:0,left:0,zIndex:100000, flex:1, justifyContent:'center', alignItems:'center', backgroundColor:'#fff',height:'100%',width:'100%'}} >
+      <CapLoader />
+      </View>
+       :null}
+    
     <View style={{flex:1, position:'absolute',zIndex:1, height:'100%',width:'100%', backgroundColor:'#eee'}}>
     
       <View style={{position: 'absolute',
@@ -193,8 +204,9 @@ const styles = StyleSheet.create({
     flexDirection:'column',
     alignItems:'center',
     justifyContent:'center',
-    backgroundColor:'transparent',
-    opacity:0
+    
+    backgroundColor:'#fff',
+    opacity:1
   },
   loadingGif:{
     width: '60%',
